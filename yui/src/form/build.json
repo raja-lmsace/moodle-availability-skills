@@ -1,0 +1,10 @@
+{
+    "name": "moodle-availability_skills-form",
+    "builds": {
+      "moodle-availability_skills-form": {
+        "jsfiles": [
+          "form.js"
+        ]
+      }
+    }
+  }
