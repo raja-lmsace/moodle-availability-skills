@@ -23,8 +23,6 @@
  */
 namespace availability_skills;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Front-end class.
  *
@@ -34,33 +32,67 @@ defined('MOODLE_INTERNAL') || die();
  */
 class frontend extends \core_availability\frontend {
 
-     /**
+    /**
      * @var array Cached init parameters
      */
     protected $cacheinitparams = [];
 
+    /**
+     * Gets a list of string identifiers (in the plugin's language file) that
+     * are required in JavaScript for this plugin. The default returns nothing.
+     *
+     * You do not need to include the 'title' string (which is used by core) as
+     * this is automatically added.
+     *
+     * @return array Array of required string identifiers
+     */
     protected function get_javascript_strings() {
         return [
-            'label_chooseskill',
-            'label_choosetype',
-            'label_chooselevel',
-            'label_points',
-            'type_notinlevel',
-            'type_exactlevel',
-            'type_selectlevelorhigher',
-            'type_selectlevelorlower',
-            'type_exactpoints',
-            'type_moreorequalpoints',
-            'type_lesspoints',
+            'chooseskill',
+            'choosetype',
+            'chooselevel',
+            'points',
+            'notinlevel',
+            'exactlevel',
+            'selectlevelorhigher',
+            'selectlevelorlower',
+            'exactpoints',
+            'moreorequalpoints',
+            'lesspoints',
         ];
     }
 
+    /**
+     * Gets additional parameters for the plugin's initInner function.
+     *
+     * Default returns no parameters.
+     *
+     * @param \stdClass $course Course object
+     * @param \cm_info $cm Course-module currently being edited (null if none)
+     * @param \section_info $section Section currently being edited (null if none)
+     * @return array Array of parameters for the JavaScript function
+     */
     protected function get_javascript_init_params($course, \cm_info $cm = null, \section_info $section = null) {
-            $skilldata = condition::fetch_skill_record($course->id);
-            $this->cacheinitparams = [$skilldata];
-            return $this->cacheinitparams;
+        global $DB;
+
+        // Retrieve the skills that are enabled in the course.
+        $skilldata = condition::fetch_skill_record($course->id);
+        $levels = [];
+
+        $this->cacheinitparams = [$skilldata, \context_course::instance($course->id)->id];
+        return $this->cacheinitparams;
     }
 
+    /**
+     * Decides whether this plugin should be available in a given course. The
+     * plugin can do this depending on course or system settings.
+     *
+     * Default returns true.
+     *
+     * @param \stdClass $course Course object
+     * @param \cm_info $cm Course-module currently being edited (null if none)
+     * @param \section_info $section Section currently being edited (null if none)
+     */
     protected function allow_add($course, \cm_info $cm = null, \section_info $section = null) {
         return true;
     }

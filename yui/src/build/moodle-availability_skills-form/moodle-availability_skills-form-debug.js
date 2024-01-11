@@ -1,3 +1,5 @@
+YUI.add('moodle-availability_skills-form', function (Y, NAME) {
+
 /**
  * JavaScript for form editing skills conditions.
  *
@@ -222,3 +224,6 @@ M.availability_skills.form.fillErrors = function(errors, node) {
     }
 
 };
+
+
+}, '@VERSION@', {"requires": ["base", "node", "event", "io", "moodle-core_availability-form"]});

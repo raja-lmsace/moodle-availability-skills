@@ -25,23 +25,30 @@
 $string['description'] = 'Require students to meet the skills conditions.';
 $string['pluginname'] = 'Restrict by skills';
 $string['title'] = 'Skills';
-// Javascript strings.
-$string['label_chooseskill'] = 'Choose Skill';
-$string['label_choosetype'] = 'Type';
-$string['label_chooselevel'] = 'Level';
-$string['label_points'] = 'Points';
-$string['type_notinlevel'] = 'Not in level';
-$string['type_exactlevel'] = 'Exact level';
-$string['type_selectlevelorhigher'] = 'Selected level or higher';
-$string['type_selectlevelorlower'] = 'Selected level or lower';
-$string['type_exactpoints'] = 'Exact points';
-$string['type_moreorequalpoints'] = 'More or equal than points';
-$string['type_lesspoints'] = 'Less points';
+
+// Condition type strings.
+$string['chooseskill'] = 'Choose Skill';
+$string['choosetype'] = 'Type';
+$string['chooselevel'] = 'Level';
+$string['points'] = 'Points';
+$string['notinlevel'] = 'Not in level';
+$string['exactlevel'] = 'Exact level';
+$string['selectlevelorhigher'] = 'Selected level or higher';
+$string['selectlevelorlower'] = 'Selected level or lower';
+$string['exactpoints'] = 'Exact points';
+$string['moreorequalpoints'] = 'More or equal than points';
+$string['lesspoints'] = 'Less points';
+
 // Condition Type description.
-$string['requires_not_in_level'] = 'This skill is not in the selected Level';
-$string['requires_exact_level'] = 'This Skill exact in the selected level';
-$string['requires_select_level_or_higher'] = 'This skill in selected Level Or higher in the selected level';
-$string['requires_select_level_or_lower'] = 'This skill in selected Level Or lower in the selected level';
-$string['requires_exact_points'] = 'This skill exact points';
-$string['requires_more_or_equal_points'] = 'This skill in more Or equal than points';
-$string['requires_less_points'] = 'This skill get less points';
+$string['requires_notinlevel'] = 'Your skill <strong>{$a->skill}</strong> should not be at level - <strong>{$a->level}</strong>';
+$string['requires_exactlevel'] = 'Your skill <strong>{$a->skill}</strong> should be precisely at level - <strong>{$a->level}</strong>';
+$string['requires_selectlevelorhigher'] = 'Ensure that your skill <strong>{$a->skill}</strong> is at an equal or higher than level - <strong>{$a->level}</strong>';
+$string['requires_selectlevelorlower'] = 'Ensure that your skill <strong>{$a->skill}</strong> is at or lower than level - <strong>{$a->level}</strong>';
+$string['requires_exactpoints'] = 'Your skill <strong>{$a->skill}</strong> should be exactly <strong>{$a->points}</strong> points';
+$string['requires_moreorequalpoints'] = 'Your skill <strong>{$a->skill}</strong> should be at or above <strong>{$a->points}</strong> points';
+$string['requires_lesspoints'] = 'Your skill <strong>{$a->skill}</strong> should be below <strong>{$a->points}</strong> points ';
+$string['error_select_skill_id'] = 'You must be select the skill';
+
+// Errors description.
+$string['missingskillsincourse'] = 'The selected skill is <strong>missing</strong> for this actvity';
+$string['missingskills'] = 'The selected skill is <strong>missing</strong>';

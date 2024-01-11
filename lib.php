@@ -15,18 +15,29 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Availability skills - Plugin version and other meta-data are defined here.
+ * Handles AJAX processing.
  *
  * @package   availability_skills
  * @copyright 2023, bdecent gmbh bdecent.de
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->component = 'availability_skills';
-$plugin->version = 2024011000;
-$plugin->requires = 2022041900;
-$plugin->release = '1.0';
-$plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = ['tool_skills' => 2023102507];
+/**
+ * return the selected skill levels in the fragment
+ *
+ * @param array $args Skill data
+ * @return string $html
+ */
+function availability_skills_output_fragment_load_skill_levels($args) {
+    global $DB;
+    // TODO: Verify the context.
+    if (isset($args['skill'])) {
+        $skillid = $args['skill'];
+        $levels = $DB->get_records_menu('tool_skills_levels', ['skill' => $skillid], '', 'id, name');
+        $html = '';
+        foreach ($levels as $id => $name) {
+            $html .= html_writer::tag('option', format_string($name), ['value' => $id]);
+        }
+        return $html;
+    }
+}
