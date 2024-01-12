@@ -25,6 +25,12 @@ M.availability_skills.form.initInner = function(skills, contextid) {
     this.contextID = contextid;
 };
 
+/**
+ * Get/create the condition node(s).
+ *
+ * @param {Object} json
+ * @return {Object} node
+ */
 M.availability_skills.form.getNode = function(json) {
 
     /**
@@ -184,7 +190,6 @@ M.availability_skills.form.getNode = function(json) {
         updateSkillLevels(value, levelselect, contextID, emptylevel);
     });
 
-
     // Add event handlers (first time only).
     if (!M.availability_skills.form.addedEvents) {
         M.availability_skills.form.addedEvents = true;
@@ -204,6 +209,12 @@ M.availability_skills.form.getNode = function(json) {
     return node;
 };
 
+/**
+ * Fill or fetch a value
+ *
+ * @param {Object} value
+ * @param {Object} node
+ */
 M.availability_skills.form.fillValue = function(value, node) {
 
     // Skill
@@ -216,6 +227,12 @@ M.availability_skills.form.fillValue = function(value, node) {
     value.level = parseInt(node.one('select[name=level]').get('value'), 0);
 };
 
+/**
+ * Fill errors
+ *
+ * @param {Array} errors
+ * @param {Object} node
+ */
 M.availability_skills.form.fillErrors = function(errors, node) {
 
     // Doesn't select the skill, then the error will display.
@@ -227,4 +244,4 @@ M.availability_skills.form.fillErrors = function(errors, node) {
 };
 
 
-}, '@VERSION@', {"requires": ["base", "node", "event", "io", "moodle-core_availability-form"]});
+}, '@VERSION@', {"requires": ["base", "node", "event", "moodle-core_availability-form"]});

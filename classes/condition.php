@@ -213,8 +213,9 @@ class condition extends \core_availability\condition {
 
         $a = new \stdClass();
         $a->skill = self::get_skill($this->skill);
-        $leveldata = self::get_level($this->skill, $this->level);
-        $a->level = $leveldata->name;
+        if ($record = $DB->get_record('tool_skills_levels', ['id' => $this->level, 'skill' => $this->skill])) {
+            $a->level = $record->name;
+        }
         $a->points = $this->points;
 
         if ($not) {
@@ -283,20 +284,6 @@ class condition extends \core_availability\condition {
     }
 
     /**
-     * Get the selected condition level points.
-     *
-     * @param int $skill Skill ID
-     * @param int $level Level ID
-     * @return (objcet) $reocrd
-     */
-    public static function get_level($skill, $level) {
-        global $DB;
-        $record = $DB->get_record('tool_skills_levels', ['id' => $level, 'skill' => $skill]);
-
-        return (object) $record;
-    }
-
-    /**
      * Get the user points.
      *
      * @param int $skill Skill ID
@@ -335,11 +322,12 @@ class condition extends \core_availability\condition {
 
         // Get the user level points from the user points table.
         $userlevel = self::get_user_level($skill, $userid);
+        $condtionlevel = '';
 
         // Get the condition level points.
-        $leveldata = self::get_level($skill, $level);
-        $condtionlevel = $leveldata->points;
-
+        if ($record = $DB->get_record('tool_skills_levels', ['id' => $level, 'skill' => $skill])) {
+            $condtionlevel = $record->points;
+        }
         $typeconditionmet = true;
         switch($conditiontype) {
             case self::TYPE_NOT_IN_LEVEL:
