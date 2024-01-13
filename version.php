@@ -25,8 +25,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'availability_skills';
-$plugin->version = 2024011000;
+$plugin->version = 2024012000;
 $plugin->requires = 2022041900;
 $plugin->release = '1.0';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->dependencies = ['tool_skills' => 2023102507];
+$plugin->dependencies = ['tool_skills' => 2024012000];

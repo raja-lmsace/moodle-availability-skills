@@ -87,12 +87,13 @@ M.availability_skills.form.getNode = function(json) {
                 };
 
                 var request = Fragment.loadFragment('availability_skills', 'load_skill_levels', contextID, params);
-
-                request.then(function(html, js) {
+                request.then(function(html) {
                     selector.set('innerHTML', html || emptylevel);
-
+                    // Set the first value as selected option.
+                    selector.set('value', selector.get('options').item(0).get('value'));
+                    // Whichever the input value changed, just update the form.
+                    M.core_availability.form.update();
                     resolve(true);
-                    return true;
                 }).catch(reject);
 
             });
@@ -181,13 +182,15 @@ M.availability_skills.form.getNode = function(json) {
     var skill = select.get('value');
     updateSkillLevels(skill, levelselect, contextID, emptylevel).then(function() {
         setInitialValue(node, json.level);
+        // Whichever the input value changed, just update the form.
+        M.core_availability.form.update();
         return;
     }).catch();
 
     // Event listner to init the levels option element update
     select.on('change', function(e) {
         var value = e.target.get('value');
-        updateSkillLevels(value, levelselect, contextID, emptylevel);
+        updateSkillLevels(value, levelselect, contextID, emptylevel); // Update the skill levels.
     });
 
     // Add event handlers (first time only).
@@ -203,7 +206,7 @@ M.availability_skills.form.getNode = function(json) {
         root.delegate('valuechange', function() {
             // Whichever the input value changed, just update the form.
             M.core_availability.form.update();
-       }, '.availability_skills input[name=points]');
+        }, '.availability_skills input[name=points]');
     }
 
     return node;
@@ -217,14 +220,15 @@ M.availability_skills.form.getNode = function(json) {
  */
 M.availability_skills.form.fillValue = function(value, node) {
 
-    // Skill
+    // Skill.
     value.skill = parseInt(node.one('select[name=skills]').get('value'), 10);
-    // Type
+    // Type.
     value.ct = parseInt(node.one('select[name=ct]').get('value'), 10);
-    // Points
+    // Points.
     value.points = parseInt(node.one('input[name=points]').get('value'), 10);
     // Levels.
-    value.level = parseInt(node.one('select[name=level]').get('value'), 0);
+    value.level = parseInt(node.one('select[name=level]').get('value'), 10);
+
 };
 
 /**

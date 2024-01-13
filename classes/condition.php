@@ -111,6 +111,7 @@ class condition extends \core_availability\condition {
         if (isset($structure->points) && is_int($structure->points)) {
             $this->points = $structure->points;
         }
+
     }
 
     /**
@@ -213,6 +214,7 @@ class condition extends \core_availability\condition {
 
         $a = new \stdClass();
         $a->skill = self::get_skill($this->skill);
+
         if ($record = $DB->get_record('tool_skills_levels', ['id' => $this->level, 'skill' => $this->skill])) {
             $a->level = $record->name;
         }
