@@ -1,4 +1,4 @@
-@tool @tool_skills @tool_skills_activity_availability
+@availability @availability_skills
 Feature: Restrict user access to the modules based user earned skills points
   In order to use the features
   As admin
@@ -43,11 +43,6 @@ Feature: Restrict user access to the modules based user earned skills points
     And I set the field "Quiz1" to "1"
     And I set the field "Test page4" to "1"
     And I set the field "Assign1" to "1"
-    # And I am on "Course 2" course homepage
-    # And I navigate to "Course completion" in current page administration
-    # And I expand all fieldsets
-    # And I set the field "Test page2" to "1"
-    # And I press "Save changes"
     And I create skill with the following fields to these values:
       | Skill name       | Begineer |
       | Key              | begineer |
@@ -100,25 +95,7 @@ Feature: Restrict user access to the modules based user earned skills points
       | Upon course completion | Points   |
       | Points                 | 200      |
     And I press "Save changes"
-    # And I navigate to "Course 2" course skills
-    # And I click on ".skill-course-actions .action-edit" "css_element" in the "begineer" "table_row"
-    # And I set the following fields to these values:
-    #   | Status                 | Enabled  |
-    #   | Upon course completion | Points   |
-    #   | Points                 | 150      |
-    # And I press "Save changes"
-    # And I click on ".skill-course-actions .action-edit" "css_element" in the "competence" "table_row"
-    # And I set the following fields to these values:
-    #   | Status                 | Enabled  |
-    #   | Upon course completion | Points   |
-    #   | Points                 | 150      |
-    # And I press "Save changes"
-    # And I click on ".skill-course-actions .action-edit" "css_element" in the "expert" "table_row"
-    # And I set the following fields to these values:
-    #   | Status                 | Enabled  |
-    #   | Upon course completion | Points   |
-    #   | Points                 | 150      |
-    # And I press "Save changes"
+
 
   #1. Activity availability Not in level restrict access
   @javascript
@@ -328,7 +305,6 @@ Feature: Restrict user access to the modules based user earned skills points
     And I set the field "skills" to "Begineer"
     And I set the field "Type" to "Exact points"
     And I set the field with xpath "//input[@class='form-control']" to "8"
-    # And I set the field "points" to "8"
     And I press "Save and return to course"
     And I am on the "Test page1" "page activity" page
     And I click on "More" "link" in the ".secondary-navigation" "css_element"
