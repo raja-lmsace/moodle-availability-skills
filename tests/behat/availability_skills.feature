@@ -1,4 +1,4 @@
-@availability @availability_skills
+@availability @availability_skills @javascript
 Feature: Restrict user access to the modules based user earned skills points
   In order to use the features
   As admin
@@ -96,11 +96,10 @@ Feature: Restrict user access to the modules based user earned skills points
       | Points                 | 200      |
     And I press "Save changes"
 
-
   #1. Activity availability Not in level restrict access
   @javascript
   Scenario: Activity availability Not in level restrict access
-  Given I am on the "Test page1" "page activity" page
+    Given I am on the "Test page1" "page activity" page
     And I click on "More" "link" in the ".secondary-navigation" "css_element"
     And I click on "Manage skills" "link"
     And I should see "Begineer" in the "mod_skills_list" "table"
