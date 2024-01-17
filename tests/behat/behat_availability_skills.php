@@ -44,7 +44,7 @@ class behat_availability_skills extends behat_base {
      */
     public function i_navigate_to_skills() {
         $this->execute('behat_navigation::i_navigate_to_in_site_administration',
-            ["Plugins > Admin availabilitys > Skills"]);
+            ["Plugins > Admin tools > Skills"]);
     }
 
     /**
