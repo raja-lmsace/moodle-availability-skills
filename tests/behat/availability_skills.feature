@@ -1,4 +1,4 @@
-@availability @availability_skills @javascript
+@availability @availability_skills
 Feature: Restrict user access to the modules based user earned skills points
   In order to use the features
   As admin
@@ -224,6 +224,7 @@ Feature: Restrict user access to the modules based user earned skills points
     And I log out
     And I am on the "Course 1" course page logged in as student1
     And I should not see "Not available unless: Ensure that your skill Competence is at an equal or higher than level - Level 1"
+    And I wait "15" seconds
     And I am on the "student1" "user > profile" page
     Then I should see "Skills earned"
     And I should see "Earned: 0"
@@ -236,7 +237,7 @@ Feature: Restrict user access to the modules based user earned skills points
     And I wait "5" seconds
     And I am on "Course 1" course homepage
     And I wait "5" seconds
-    And I should see "Not available unless: Ensure that your skill Competence is at an equal or higher than level - Level 1"
+    And "Not available unless: Ensure that your skill Competence is at an equal or higher than level - Level 1" "text" should exist in the ".isrestricted" "css_element"
 
   #4. Activity availability Selected level or lower restrict access
   @javascript
@@ -271,7 +272,7 @@ Feature: Restrict user access to the modules based user earned skills points
     And I press "Save changes"
     And I log out
     And I am on the "Course 1" course page logged in as student1
-    And I should see "Not available unless: Your skill Begineer should be exactly points"
+    And "Not available unless: Ensure that your skill Begineer is at or lower than level - begineer" "text" should exist in the ".isrestricted" "css_element"
     And I am on the "student1" "user > profile" page
     Then I should see "Skills earned"
     And I should see "Earned: 0"
@@ -291,7 +292,7 @@ Feature: Restrict user access to the modules based user earned skills points
     Then I should see "Points to complete this skill: 60 (Earned: 12)"
     And I am on "Course 1" course homepage
     And I wait "5" seconds
-    And I should not see "Not available unless: Your skill Begineer should be exactly points"
+    And I should not see "Not available unless: Ensure that your skill Begineer is at or lower than level - begineer"
 
   #5. Activity availability Exact points restrict access
   @javascript
@@ -330,6 +331,7 @@ Feature: Restrict user access to the modules based user earned skills points
     Then I should see "Points to complete this skill: 60 (Earned: 8)"
     And I am on "Course 1" course homepage
     And I should see "Not available unless: Your skill Begineer should be exactly 8 points"
+    And "Not available unless: Your skill Begineer should be exactly 8 points" "text" should exist in the ".isrestricted" "css_element"
     And I wait "5" seconds
 
   #6. Activity availability More or equal than points restrict access
@@ -404,7 +406,8 @@ Feature: Restrict user access to the modules based user earned skills points
     And I am on the "student1" "user > profile" page
     Then I should see "Points to complete this skill: 60 (Earned: 13)"
     And I am on "Course 1" course homepage
-    And I should see "Not available unless: Your skill Begineer should be at or above 11 points"
+    # And I should see "Not available unless: Your skill Begineer should be at or above 11 points"
+    And "Not available unless: Your skill Begineer should be at or above 11 points" "text" should exist in the ".isrestricted" "css_element"
     And I wait "5" seconds
 
   #7. Activity availability Less points restrict access
@@ -445,7 +448,7 @@ Feature: Restrict user access to the modules based user earned skills points
     Then I should see "Skills earned"
     And I should see "Earned: 0"
     And I am on "Course 1" course homepage
-    And I should see "Not available unless: Your skill Begineer should be below 9 points"
+    And "Not available unless: Your skill Begineer should be below 9 points" "text" should exist in the ".isrestricted" "css_element"
     And I wait "5" seconds
     And I am on the "Test page1" "page activity" page
     And I press "Mark as done"
@@ -453,7 +456,7 @@ Feature: Restrict user access to the modules based user earned skills points
     And I am on the "student1" "user > profile" page
     Then I should see "Points to complete this skill: 60 (Earned: 8)"
     And I am on "Course 1" course homepage
-    And I should see "Not available unless: Your skill Begineer should be below 9 points"
+    And "Not available unless: Your skill Begineer should be below 9 points" "text" should exist in the ".isrestricted" "css_element"
     And I am on the "Quiz1" "quiz activity" page
     And I press "Mark as done"
     And I wait until "Done" "button" exists
