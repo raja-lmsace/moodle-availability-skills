@@ -330,41 +330,41 @@ class condition extends \core_availability\condition {
         if ($record = $DB->get_record('tool_skills_levels', ['id' => $level, 'skill' => $skill])) {
             $condtionlevel = $record->points;
         }
-        $typeconditionmet = true;
+        $typeconditionmet = false;
         switch($conditiontype) {
             case self::TYPE_NOT_IN_LEVEL:
-                if ($userlevel !== $condtionlevel) {
-                    $typeconditionmet = false;
+                if ($userlevel != $condtionlevel) {
+                    $typeconditionmet = true;
                 }
                 break;
             case self::TYPE_EXACT_LEVEL:
-                if ($userlevel === $condtionlevel) {
-                    $typeconditionmet = false;
+                if ($userlevel == $condtionlevel) {
+                    $typeconditionmet = true;
                 }
                 break;
             case self::TYPE_SELECT_LEVEL_OR_HIGHER:
                 if ($userlevel >= $condtionlevel) {
-                    $typeconditionmet = false;
+                    $typeconditionmet = true;
                 }
                 break;
             case self::TYPE_SELECT_LEVEL_OR_LOWER:
                 if ($userlevel <= $condtionlevel) {
-                    $typeconditionmet = false;
+                    $typeconditionmet = true;
                 }
                 break;
             case self::TYPE_EXACT_POINTS:
                 if ($userlevel == $points) {
-                    $typeconditionmet = false;
+                    $typeconditionmet = true;
                 }
                 break;
             case self::TYPE_MORE_OR_EQUAL_POINTS:
                 if ($userlevel >= $points) {
-                    $typeconditionmet = false;
+                    $typeconditionmet = true;
                 }
                 break;
             case self::TYPE_LESS_POINTS:
                 if ($userlevel < $points) {
-                    $typeconditionmet = false;
+                    $typeconditionmet = true;
                 }
                 break;
         }
