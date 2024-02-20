@@ -1,5 +1,5 @@
 @availability @availability_skills
-Feature: Restrict user access to the modules based user earned skills points
+Feature: Restrict user access to the course based user earned skills points
   In order to use the features
   As admin
   I need to be able to configure the tool skills plugin
@@ -37,12 +37,6 @@ Feature: Restrict user access to the modules based user earned skills points
       | admin    | C2 | manager          |   0         |     0     |
     And I log in as "admin"
     And I am on "Course 1" course homepage
-    # And I navigate to "Course completion" in current page administration
-    # And I expand all fieldsets
-    # And I set the field "Test page1" to "1"
-    # And I set the field "Quiz1" to "1"
-    # And I set the field "Test page4" to "1"
-    # And I set the field "Assign1" to "1"
     And I create skill with the following fields to these values:
       | Skill name       | Beginner |
       | Key              | beginner |
@@ -149,7 +143,6 @@ Feature: Restrict user access to the modules based user earned skills points
     And I am on "Course 1" course homepage
     And I should not see "Not available unless: Your skill Beginner should not be at level - Level 0"
     And I wait "5" seconds
-
 
   #2. Course availability Exact level restrict access
   @javascript
