@@ -179,7 +179,7 @@ class condition extends \core_availability\condition {
     public function is_available($not, info $info, $grabthelot, $userid) {
         global $USER, $DB;
 
-        $allow = self::skill_type_condition_met($this->skill, $this->conditiontype, $this->level, $this->points, $USER->id);
+        $allow = self::skill_type_condition_met($this->skill, $this->conditiontype, $this->level, $this->points, $userid);
         if ($not) {
             $allow = !$allow;
         }
