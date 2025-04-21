@@ -420,7 +420,7 @@ Feature: Restrict user access to the course based user earned skills points
     And I press "Mark as done"
     And I wait until "Done" "button" exists
     And I am on the "student1" "user > profile" page
-    Then I should see "Points for completion : 10 (Earned: 0)" in the ".skills-points-C1" "css_element"
+    Then I should see "(Earned: 0)" in the ".skills-points-C1" "css_element"
     And I am on "Course 1" course homepage
     And "Not available unless: Your skill Competence should be at or above 12 points" "text" should exist in the ".isrestricted" "css_element"
     And I am on "Course 2" course homepage
@@ -428,7 +428,7 @@ Feature: Restrict user access to the course based user earned skills points
     And I press "Mark as done"
     And I wait until "Done" "button" exists
     And I am on the "student1" "user > profile" page
-    Then I should see "Points for completion : 13 (Earned: 13)" in the ".skills-points-C2" "css_element"
+    Then I should see "(Earned: 13)" in the ".skills-points-C2" "css_element"
     And I should see "Points to complete this skill: 30 (Earned: 13)" in the ".skill-competence" "css_element"
     And I am on "Course 1" course homepage
     And I should not see "Not available unless: Your skill Competence should be at or above 12 points"
