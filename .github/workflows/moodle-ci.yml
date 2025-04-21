@@ -46,8 +46,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: plugin
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
